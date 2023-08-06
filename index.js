@@ -17,7 +17,7 @@ const pool = new Pool({
 // Middleware
 app.use(bodyParser.json());
 
-// Route to handle POST requests to /submit
+// Route to handle POST requests to /submit 
 app.post('/submit', async (req, res) => {
   try {
     const { userID, email } = req.body;
