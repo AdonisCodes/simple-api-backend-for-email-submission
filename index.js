@@ -1,23 +1,25 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { Pool } = require('pg');
+const cors = require('cors'); // Import the cors middleware
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 // Create a PostgreSQL pool
 const pool = new Pool({
-  user: 'wfahmwhm', // The username provided for the database
-  host: 'bubble.db.elephantsql.com', // The host the server is running on ( Usually called host / Server and is an url similar to this name.db.name.com)
-  database: 'wfahmwhm', // The database being used
-  password: 'Mr73vlDpngbtfF9FJwdyPQvGPdzHhv8k', // The password for the user / database
-  port: 5432, // Default PostgreSQL port
+  user: 'wfahmwhm',
+  host: 'bubble.db.elephantsql.com',
+  database: 'wfahmwhm',
+  password: 'Mr73vlDpngbtfF9FJwdyPQvGPdzHhv8k',
+  port: 5432,
 });
 
 // Middleware
+app.use(cors()); // Use CORS middleware
 app.use(bodyParser.json());
 
-// Route to handle POST requests to /submit 
+// Route to handle POST requests to /submit     
 app.post('/submit', async (req, res) => {
   try {
     const { userID, email } = req.body;
